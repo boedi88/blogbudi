@@ -1,0 +1,38 @@
+<h1>Listing posts</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th>User</th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%=h post.title %></td>
+    <td><%=sanitize post.scontent %></td>
+    <td><%=h post.name %></td>
+    <td><%= link_to 'Show', post %></td>
+<% if current_user == post.user %>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
+<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New post', new_post_path %> |
+<%= link_to 'Draft list', :action=>"draft" %> |
+<%= link_to 'Back', account_path %>
+
+<br />
+<br />
+
+<p>Tags:
+</p>
+<% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+  <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
+<% end %>
+

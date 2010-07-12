@@ -1,0 +1,40 @@
+<%= include_tiny_mce_if_needed %>
+<% @post.categories.build if @post.categories.empty? %>
+<% form_for @post, :html => {:multipart => true} do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :scontent %><br />
+    <%= f.text_area :scontent, :class => "mceEditor" %>
+  </p>
+  <p>
+    <%= f.label :photo %><br />
+    <%= f.file_field :photo %>
+  </p>
+  <p>
+    <%= f.label :tag_list %><br />
+    <%= f.text_field :tag_list %>
+  </p>
+
+  
+  <% f.fields_for :categories do |category_form| %>
+    <p>
+      <%= category_form.label :name, 'Category:' %>
+      <%= category_form.text_field :name %>
+    </p>
+    <% unless category_form.object.nil? || category_form.object.new_record? %>
+      <p>
+        <%= category_form.label :_delete, 'Remove:' %>
+        <%= category_form.check_box :_delete %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <p>
+    <%= f.submit 'Save as Draft' %>
+  </p>
+<% end %>

@@ -1,0 +1,39 @@
+<p>
+  <b>Title:</b>
+  <%=h @post.title %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @post.name %>
+</p>
+
+<p>
+  <b>Scontent:</b>
+  <%=sanitize @post.scontent %>
+</p>
+
+<br />
+
+<p>
+  <%= image_tag @post.photo.url %>
+  <%= image_tag @post.photo.url(:thumb) %>
+</p>
+
+<br />
+
+<p>
+  The post state is <%=h @post.state %>
+</p>
+
+<% if @post.state == "draft" %> 
+<%= link_to 'Published the post' , :action=>"post_published", :id => @post.id %> |
+<% elsif @post.state == "published" %> 
+<%= link_to "Save as Draft", :action=>"change_to_draft", :id => @post.id %> |
+<% end %>
+
+<br /><br />
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back to Posts', posts_path %> |
+<%= link_to 'Manage Comments', post_comments_path(@post) %>
