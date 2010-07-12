@@ -1,7 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :posts, :has_many => :comments
+
   map.login  '/login',  :controller => 'user_sessions', :action => 'destroy'
 
   map.root :controller => 'user_sessions', :action => 'new'
+  
+  map.connect 'post/draft', :controller => 'posts', :action => 'draft'
 
   map.resource :user_session
 

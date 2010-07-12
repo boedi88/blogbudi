@@ -21,8 +21,7 @@ development:
   database: blogbudi_development
   pool: 5
   username: root
-  password:
-  socket: /tmp/mysql.sock
+  password: acmilan
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -34,7 +33,7 @@ test:
   database: blogbudi_test
   pool: 5
   username: root
-  password:
+  password: acmilan
   socket: /tmp/mysql.sock
 
 production:
@@ -44,5 +43,5 @@ production:
   database: blogbudi_production
   pool: 5
   username: root
-  password: 
+  password: acmilan
   socket: /tmp/mysql.sock

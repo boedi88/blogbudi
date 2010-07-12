@@ -36,6 +36,10 @@
   <b>Current login ip:</b>
   <%=h @user.current_login_ip %>
 </p>
+
+<p>
+  <%= image_tag @user.photo.url(:thumb) %>
+</p>
  
  
 <%= link_to 'Edit', edit_account_path %>

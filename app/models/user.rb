@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
   
   has_many :user_roles, :dependent => :destroy
   has_many :roles, :through => :user_roles
+  has_many :posts
+  has_attached_file :photo, :styles => { :thumb => "100x100#", :small  => "150x150>" },
+		:url  => "/assets/users/:id/:style/:basename.:extension",
+                :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
+  attr_accessible :photo
   
   # returns true if the user has the "admin" role, false if not.
   def admin?
