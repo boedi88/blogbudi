@@ -29,11 +29,14 @@
 <% if @post.state == "draft" %> 
 <%= link_to 'Published the post' , :action=>"post_published", :id => @post.id %> |
 <% elsif @post.state == "published" %> 
+  <% if current_user == @post.user %>
 <%= link_to "Save as Draft", :action=>"change_to_draft", :id => @post.id %> |
+  <% end %>
 <% end %>
 
 <br /><br />
-
+<% if current_user == @post.user %>
 <%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
 <%= link_to 'Back to Posts', posts_path %> |
 <%= link_to 'Manage Comments', post_comments_path(@post) %>

@@ -22,7 +22,24 @@ Feature: manage post
 
   Scenario: Add tag to existing post
     Given I have a post titled "Post"
-    And I am on the post page
-    Then I should see "Show"
+    And I am on the show draft post page
+    Then I should see "Edit"
+    When I follow "Edit"
+    And I fill in "Tag list" with "New"
+    And I press "Save as Draft"
+    Then I should see "Post was successfully updated."
+
+  Scenario: Publish a post
+    Given I have a post titled "Post"
+    And I am on the show draft post page
+    Then I should see "The post state is draft"
+    And I should see "Published the post"
+    When I follow "Published the post"
+    Then I should see "Listing posts"
+
+  Scenario: Save a post as draft
+    Given I have a post titled "Post"
+    And I am on the show draft post page
+    Then I should see "The post state is published"
       
 

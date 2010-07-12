@@ -12,8 +12,10 @@ module NavigationHelpers
       '/'
     when /the post page/
       '/posts'
-    when /the show page for (.+)/
-      polymorphic_path(model($1))
+    when /the show draft post page/
+      '/posts/17'
+    #when /the show page for (.+)/
+     # polymorphic_path(model($1))
 
     # the following are examples using path_to_pickle
 

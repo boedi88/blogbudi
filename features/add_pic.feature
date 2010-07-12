@@ -28,6 +28,7 @@ Feature: Create posting
     And I attach the file "features/support/PaperClip-Grey-300x296.jpg" to "Photo"
     When I press "Save"
     Then I should see "Post was successfully created."
+    And I should see "The post state is draft"
     When I follow "Back"
     Then I should be on the post page
     When I follow "Back"

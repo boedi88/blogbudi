@@ -1,22 +1,28 @@
 class CommentsController < ApplicationController
   def index
+    @user = @current_user
     @post = Post.find(params[:post_id])
     @comments = @post.comments
   end
 
   def show
+    @user = @current_user
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
   end
 
   def new
+    @user = @current_user
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build
+    @comment.commenter = @user.login
   end
 
   def create
+    @user = @current_user
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(params[:comment])
+    @comment.commenter = @user.login
     if @comment.save
       redirect_to post_comment_url(@post, @comment)
     else
@@ -25,8 +31,15 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @user = @current_user
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
+
+    if @comment.commenter == @user.login
+    else
+      flash[:notice] = 'You are not allowed to edit this comment.'
+      redirect_to post_comments_path(@post)
+    end
   end
 
   def update

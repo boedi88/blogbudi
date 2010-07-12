@@ -26,7 +26,10 @@ Given /^I have a post titled (.+)$/ do |titles|
   click_button('Submit')
   
   post = Post.create do |u|
+    u.id = "17"
     u.title = titles
+    u.scontent = "testing"
+    u.name = "dwi"
     u.photo_file_name = "test.jpg"
     u.photo_content_type = 'image/jpeg'
     u.photo_file_size = 1.megabytes

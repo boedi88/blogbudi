@@ -11,7 +11,7 @@
   <tr>
     <td><%=h post.name %></td>
     <td><%=h post.title %></td>
-    <td><%=h post.scontent %></td>
+    <td><%=sanitize post.scontent %></td>
     <td><%= link_to 'Show', post %></td>
     <td><%= link_to 'Edit', edit_post_path(post) %></td>
     <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>

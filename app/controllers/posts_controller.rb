@@ -93,8 +93,14 @@ class PostsController < ApplicationController
   def edit
     @user = @current_user
     #@post = @user.posts.find(params[:id])
+    
     @post = Post.find(params[:id])
-    @post.suspend!
+    if @post.user == @user 
+    else
+      flash[:notice] = 'You are not allowed to edit this post.'
+      redirect_to posts_path
+    end
+    #@post.suspend!
   end
 
   # POST /posts

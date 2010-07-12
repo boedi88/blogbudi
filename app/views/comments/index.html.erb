@@ -11,7 +11,7 @@
     <td><%=h comment.commenter %></td>
     <td><%=h comment.body %></td>
     <td><%= link_to 'Show', post_comment_path(@post, comment) %></td>
-<% if current_user == @post.user %>
+<% if @user.login == comment.commenter %>
     <td>
         <%= link_to 'Edit', edit_post_comment_path(@post, comment) %>
     </td>
